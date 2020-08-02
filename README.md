@@ -17,4 +17,11 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
+# Access sidekiq at http://localhsot/sidekiq
+
+# Check redis
+$ redis cli
+$ 127.0.0.1:6379> KEYS * 
+
+
 
