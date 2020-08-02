@@ -3,13 +3,16 @@ class UsersController < ApplicationController
 
 
   def random_user
-    user = User.new 
-    user.firstname = Faker::Name.first_name 
-    user.lastname =  Faker::Name.last_name 
-    user.email = Faker::Internet.email 
+    # Move below code to job
+    # user = User.new 
+    # user.firstname = Faker::Name.first_name 
+    # user.lastname =  Faker::Name.last_name 
+    # user.email = Faker::Internet.email 
 
-    user.save! 
+    # user.save! 
     
+    GenerateRandomUserJob.perform_later
+
     redirect_to root_path
   end
 

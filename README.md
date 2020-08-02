@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Install redis client and server
 
-Things you may want to cover:
+- Update gemfile with gem 'sidekiq'
 
-* Ruby version
+- In config/application.rb add
+    # Use sidekiq as background processor
+    config.active_job.queue_adapter =  :sidekiq  # Rails.env.production ? :sidekiq  : :async  
 
-* System dependencies
+- Create sidekiq.rb in config/initializers
+- Run rails g job generate_random_user
 
-* Configuration
+# Optional  - Setup route for sidekiq/web in routes.rb
 
-* Database creation
+Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
